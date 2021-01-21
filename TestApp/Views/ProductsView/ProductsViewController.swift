@@ -9,6 +9,10 @@ import UIKit
 
 class ProductsViewController: UIViewController {
     
+    //MARK: - Public properties
+    
+    let productsViewModel = ProductsViewModel()
+    
     //MARK: - Private properties
     
     private var numberOfItemsPerRow: CGFloat {
@@ -22,7 +26,7 @@ class ProductsViewController: UIViewController {
         }
     }
     
-    private let spacing: CGFloat = 16.0
+    private let spacing: CGFloat = 16
     
     //MARK: - @IBOutlets
     
@@ -34,6 +38,11 @@ class ProductsViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setupCollectionViewLoyout()
+        productsViewModel.getProducts {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     //MARK: - Private funcs
@@ -61,13 +70,13 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        productsViewModel.productsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.reuseId, for: indexPath) as! ProductCell
-        cell.productName.text = "Some product name"
-        cell.productPrice.text = "10000"
+        
+        cell.cellModel = productsViewModel.product(at: indexPath.row)
         
         return cell
     }

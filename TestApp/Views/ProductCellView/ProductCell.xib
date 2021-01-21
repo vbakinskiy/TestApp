@@ -16,15 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-BH-XaH">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="97.5"/>
-                        <color key="backgroundColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="Oa2-BH-XaH" secondAttribute="height" multiplier="100:65" id="N6T-NO-K1q"/>
-                        </constraints>
-                    </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XXs-QM-gSx">
-                        <rect key="frame" x="0.0" y="96.5" width="150" height="50.5"/>
+                        <rect key="frame" x="0.0" y="99" width="150" height="50.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Tvv-O3-c3U">
                                 <rect key="frame" x="21.5" y="0.0" width="107" height="25"/>
@@ -43,21 +36,28 @@
                             <constraint firstAttribute="width" secondItem="XXs-QM-gSx" secondAttribute="height" multiplier="200:67" id="bDc-aC-gSR"/>
                         </constraints>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-BH-XaH">
+                        <rect key="frame" x="6" y="6" width="138" height="92"/>
+                        <color key="backgroundColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Oa2-BH-XaH" secondAttribute="height" multiplier="3:2" id="5Zq-CP-mFx"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Oa2-BH-XaH" secondAttribute="trailing" id="M9r-fi-CxK"/>
-                    <constraint firstAttribute="trailing" secondItem="XXs-QM-gSx" secondAttribute="trailing" id="Mvv-h7-r4M"/>
+                    <constraint firstItem="Oa2-BH-XaH" firstAttribute="trailing" secondItem="3uF-A6-d9C" secondAttribute="trailing" constant="-6" id="M9r-fi-CxK"/>
+                    <constraint firstItem="XXs-QM-gSx" firstAttribute="trailing" secondItem="3uF-A6-d9C" secondAttribute="trailing" id="Mvv-h7-r4M"/>
                     <constraint firstItem="XXs-QM-gSx" firstAttribute="leading" secondItem="3uF-A6-d9C" secondAttribute="leading" id="QX2-G4-6vh"/>
-                    <constraint firstItem="XXs-QM-gSx" firstAttribute="top" secondItem="Oa2-BH-XaH" secondAttribute="bottom" constant="-1" id="V2b-dB-fLy"/>
-                    <constraint firstItem="Oa2-BH-XaH" firstAttribute="top" secondItem="3uF-A6-d9C" secondAttribute="top" id="cFE-Wj-9Bs"/>
-                    <constraint firstItem="Oa2-BH-XaH" firstAttribute="leading" secondItem="3uF-A6-d9C" secondAttribute="leading" id="zMQ-Cl-KUY"/>
+                    <constraint firstItem="XXs-QM-gSx" firstAttribute="top" secondItem="Oa2-BH-XaH" secondAttribute="bottom" constant="1" id="V2b-dB-fLy"/>
+                    <constraint firstItem="Oa2-BH-XaH" firstAttribute="top" secondItem="3uF-A6-d9C" secondAttribute="top" constant="6" id="cFE-Wj-9Bs"/>
+                    <constraint firstItem="Oa2-BH-XaH" firstAttribute="leading" secondItem="3uF-A6-d9C" secondAttribute="leading" constant="6" id="zMQ-Cl-KUY"/>
                 </constraints>
             </collectionViewCellContentView>
             <color key="backgroundColor" red="0.76917761559999998" green="0.78413432839999997" blue="0.80152535439999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
-                <outlet property="productImage" destination="Oa2-BH-XaH" id="Ku9-Xc-FEI"/>
-                <outlet property="productName" destination="Tvv-O3-c3U" id="1Ea-Qk-geW"/>
-                <outlet property="productPrice" destination="81Z-iG-lP5" id="V4n-RO-G2j"/>
+                <outlet property="productImageView" destination="Oa2-BH-XaH" id="Ku9-Xc-FEI"/>
+                <outlet property="productNameLabel" destination="Tvv-O3-c3U" id="1Ea-Qk-geW"/>
+                <outlet property="productPriceLabel" destination="81Z-iG-lP5" id="V4n-RO-G2j"/>
             </connections>
             <point key="canvasLocation" x="-36.231884057971016" y="-23.4375"/>
         </collectionViewCell>
