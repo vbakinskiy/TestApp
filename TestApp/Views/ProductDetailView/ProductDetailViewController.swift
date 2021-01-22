@@ -39,7 +39,6 @@ class ProductDetailViewController: UIViewController {
     private func setupView(with product: ProductDetailViewModel?) {
         nameLabel.text = product?.name
         descriptionLabel.text = product?.description
-        imageView.contentMode = .scaleAspectFill
         imageView.fetchImage(with: product?.imageUrl)
     }
 }
