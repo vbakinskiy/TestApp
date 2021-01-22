@@ -59,6 +59,14 @@ class ProductsViewController: UIViewController {
         self.collectionView?.collectionViewLayout = layout
     }
     
+    private func showDetails() {
+        let storyboard = UIStoryboard(name: "ProductDetailView", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ProductDetailView") as? ProductDetailViewController {
+            present(vc, animated: true, completion: nil)
+        }
+    }
+    
     //MARK: - Interface orientation
     
     override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -86,6 +94,10 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
         let width = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
         
         return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showDetails()
     }
 }
 
