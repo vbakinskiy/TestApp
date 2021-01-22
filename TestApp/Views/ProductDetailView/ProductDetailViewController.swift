@@ -29,14 +29,14 @@ class ProductDetailViewController: UIViewController {
     //MARK: - Private funcs
     
     private func getProduct() {
-        productDetailViewModelController.getProductViewDetailModel { product in
+        productDetailViewModelController.getProductViewModel { product in
             DispatchQueue.main.async {
                 self.setupView(with: product)
             }
         }
     }
     
-    private func setupView(with product: ProductDetailViewModel?) {
+    private func setupView(with product: ProductViewModel?) {
         nameLabel.text = product?.name
         descriptionLabel.text = product?.description
         imageView.fetchImage(with: product?.imageUrl)

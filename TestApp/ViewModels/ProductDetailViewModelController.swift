@@ -25,10 +25,10 @@ class ProductDetailViewModelController {
     
     //MARK: - Public funcs
     
-    public func getProductViewDetailModel(completion: @escaping (ProductDetailViewModel?) -> ()) {
+    public func getProductViewModel(completion: @escaping (ProductViewModel?) -> ()) {
         NetworkManager.decodeJson(url: url) { (product: Product?) in
             guard let product = product else { return }
-            let productDetailViewModel = ProductDetailViewModel(productId: product.productId,
+            let productDetailViewModel = ProductViewModel(productId: product.productId,
                                                                 imageUrl: product.image,
                                                                 name: product.name,
                                                                 price: product.price,

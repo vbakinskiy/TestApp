@@ -33,7 +33,8 @@ class ProductsViewModelController {
                 let product = ProductViewModel(productId: product.productId,
                                                imageUrl: product.image,
                                                name: product.name,
-                                               price: product.price)
+                                               price: product.price,
+                                               description: nil)
                 self.productViewModels.append(product)
             }
             completion()
