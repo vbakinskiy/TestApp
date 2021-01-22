@@ -12,23 +12,30 @@ class ProductsViewModel {
     //MARK: - Public properties
     
     public var productsCount: Int {
-        products.count
+        productViewModels.count
     }
     
     //MARK: - Private properties
     
-    private var products: [ProductViewModel] = []
+    private var productViewModels: [ProductViewModel] = []
     
     //MARK: - Public funcs
     
     public func product(at index: Int) -> ProductViewModel {
-        products[index]
+        productViewModels[index]
     }
     
-    public func getProducts(completion: @escaping () -> ()) {
-        NetworkManager.parseJson { products in
-            guard let products = products else { return }
-            self.products = products
+    public func getProductViewModels(completion: @escaping () -> ()) {
+        NetworkManager.getProducts { products in
+            guard let products = products?.products else { return }
+            for product in products {
+                let product = ProductViewModel(productId: nil,
+                                               imageUrl: product.image,
+                                               name: product.name,
+                                               price: product.price,
+                                               description: nil)
+                self.productViewModels.append(product)
+            }
             completion()
         }
     }

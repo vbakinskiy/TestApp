@@ -8,7 +8,9 @@
 import UIKit
 
 struct ProductViewModel {
-    var productImage: String?
-    var productName: String?
-    var productPrice: Int?
+    let productId: String?
+    let imageUrl: String?
+    let name: String?
+    let price: Int?
+    let description: String?
 }

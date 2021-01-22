@@ -21,20 +21,20 @@ class ProductCell: UICollectionViewCell {
     
     //MARK: - @IBOutlets
     
-    @IBOutlet var productImageView: UIImageView!
-    @IBOutlet var productNameLabel: UILabel!
-    @IBOutlet var productPriceLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        productImageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFill
     }
     
     //MARK: - Private funcs
     
     private func setupCell() {
-        productImageView.fetchImage(with: cellModel?.productImage)
-        productNameLabel.text = cellModel?.productName
-        productPriceLabel.text = "$\(cellModel?.productPrice ?? 0)"
+        imageView.fetchImage(with: cellModel?.imageUrl)
+        nameLabel.text = cellModel?.name
+        priceLabel.text = "$\(cellModel?.price ?? 0)"
     }
 }

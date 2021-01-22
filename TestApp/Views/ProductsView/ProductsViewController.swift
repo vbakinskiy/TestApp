@@ -38,7 +38,7 @@ class ProductsViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setupCollectionViewLoyout()
-        productsViewModel.getProducts {
+        productsViewModel.getProductViewModels {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
