@@ -17,8 +17,8 @@ class ProductsViewModelController {
     
     //MARK: - Private properties
     
-    private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     private var productViewModels: [ProductViewModel] = []
+    private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     
     //MARK: - Public funcs
     
@@ -30,7 +30,8 @@ class ProductsViewModelController {
         NetworkManager.decodeJson(url: url) { (json: Json?) in
             guard let products = json else { return }
             for product in products.products {
-                let product = ProductViewModel(imageUrl: product.image,
+                let product = ProductViewModel(productId: product.productId,
+                                               imageUrl: product.image,
                                                name: product.name,
                                                price: product.price)
                 self.productViewModels.append(product)

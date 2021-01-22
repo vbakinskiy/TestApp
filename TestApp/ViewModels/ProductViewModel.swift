@@ -12,5 +12,4 @@ struct ProductViewModel {
     let imageUrl: String?
     let name: String?
     let price: Int?
-    let description: String?
 }

@@ -9,14 +9,12 @@ import UIKit
 
 class ProductsViewController: UIViewController {
     
-    //MARK: - Public properties
-    
-    let productsViewModel = ProductsViewModel()
-    
     //MARK: - Private properties
     
+    private let productsViewModelController = ProductsViewModelController()
+    
     private var numberOfItemsPerRow: CGFloat {
-        switch UIDevice.current.orientation{
+        switch UIDevice.current.orientation {
         case .portrait, .portraitUpsideDown:
             return 2
         case .landscapeLeft, .landscapeRight:
@@ -38,11 +36,7 @@ class ProductsViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setupCollectionViewLoyout()
-        productsViewModel.getProductViewModels {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+        getProducts()
     }
     
     //MARK: - Private funcs
@@ -59,10 +53,19 @@ class ProductsViewController: UIViewController {
         self.collectionView?.collectionViewLayout = layout
     }
     
-    private func showDetails() {
+    private func getProducts() {
+        productsViewModelController.getProductViewModels {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    private func showDetails(index: Int) {
         let storyboard = UIStoryboard(name: "ProductDetailView", bundle: nil)
         
         if let vc = storyboard.instantiateViewController(withIdentifier: "ProductDetailView") as? ProductDetailViewController {
+            vc.productDetailViewModelController.product = productsViewModelController.product(at: index)
             present(vc, animated: true, completion: nil)
         }
     }
@@ -78,13 +81,13 @@ class ProductsViewController: UIViewController {
 
 extension ProductsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        productsViewModel.productsCount
+        productsViewModelController.productsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.reuseId, for: indexPath) as! ProductCell
         
-        cell.cellModel = productsViewModel.product(at: indexPath.row)
+        cell.cellModel = productsViewModelController.product(at: indexPath.row)
         
         return cell
     }
@@ -97,7 +100,7 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showDetails()
+        showDetails(index: indexPath.row)
     }
 }
 

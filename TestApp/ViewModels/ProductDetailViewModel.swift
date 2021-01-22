@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct ProductDetailViewModel {
+    let productId: String?
+    let imageUrl: String?
+    let name: String?
+    let price: Int?
+    let description: String?
+}
