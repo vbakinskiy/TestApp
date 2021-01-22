@@ -8,8 +8,8 @@
 import UIKit
 
 class NetworkManager {
-    static func getProducts(completion: @escaping (Products?) -> ()) {
-        guard let url = URL(string: "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list") else { return }
+    static func decodeJson<T: Codable>(url: String, completion: @escaping (T?) -> ()) {
+        guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else {
                 print("Can't fetch data")
@@ -19,8 +19,8 @@ class NetworkManager {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            if let products = try? decoder.decode(Products.self, from: data) {
-                completion(products)
+            if let json = try? decoder.decode(T.self, from: data) {
+                completion(json)
             } else {
                 print("Can't decode json")
                 completion(nil)

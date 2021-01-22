@@ -17,6 +17,7 @@ class ProductsViewModel {
     
     //MARK: - Private properties
     
+    private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     private var productViewModels: [ProductViewModel] = []
     
     //MARK: - Public funcs
@@ -26,9 +27,9 @@ class ProductsViewModel {
     }
     
     public func getProductViewModels(completion: @escaping () -> ()) {
-        NetworkManager.getProducts { products in
-            guard let products = products?.products else { return }
-            for product in products {
+        NetworkManager.decodeJson(url: url) { (json: Json?) in
+            guard let products = json else { return }
+            for product in products.products {
                 let product = ProductViewModel(productId: nil,
                                                imageUrl: product.image,
                                                name: product.name,
