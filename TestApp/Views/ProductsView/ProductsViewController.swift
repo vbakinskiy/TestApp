@@ -29,6 +29,7 @@ class ProductsViewController: UIViewController {
     //MARK: - @IBOutlets
     
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - Lifecycle
     
@@ -36,6 +37,7 @@ class ProductsViewController: UIViewController {
         super.viewDidLoad()
         registerCell()
         setupCollectionViewLoyout()
+        setupActivityIndicator()
         getProducts()
     }
     
@@ -53,10 +55,24 @@ class ProductsViewController: UIViewController {
         self.collectionView?.collectionViewLayout = layout
     }
     
+    private func setupActivityIndicator() {
+        activityIndicator.hidesWhenStopped = true
+    }
+    
+    private func showActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
     private func getProducts() {
+        showActivityIndicator()
         productsViewModelController.getProductViewModels {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.hideActivityIndicator()
             }
         }
     }

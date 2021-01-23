@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    func fetchImage(with url: String?) {
+    func fetchImage(with url: String?, completion: @escaping () -> ()) {
         guard let url = url, let imageUrl = URL(string: url) else { return }
         let fileName = imageUrl.lastPathComponent
         
@@ -27,6 +27,7 @@ extension UIImageView {
                 DispatchQueue.main.async {
                     self.image = UIImage(data: data)
                     CacheManager.saveImageToCache(data: data, withName: fileName)
+                    completion()
                 }
             }
         }.resume()

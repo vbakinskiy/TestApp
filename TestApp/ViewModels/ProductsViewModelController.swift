@@ -45,6 +45,7 @@ class ProductsViewModelController {
         } else {
             guard let products = coreDataManager.getProducts() else { return }
             productViewModels = products
+            completion()
         }
     }
 }

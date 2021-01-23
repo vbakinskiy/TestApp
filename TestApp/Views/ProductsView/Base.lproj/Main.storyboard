@@ -25,6 +25,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="WU1-ka-5KF">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="CkE-24-TL5"/>
@@ -42,6 +46,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="WU1-ka-5KF" id="5xG-at-d6E"/>
                         <outlet property="collectionView" destination="d1G-fP-GSk" id="m51-w6-QWq"/>
                     </connections>
                 </viewController>

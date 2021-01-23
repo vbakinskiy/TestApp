@@ -42,8 +42,8 @@ class ProductDetailViewModelController {
         } else {
             guard let products = coreDataManager.getProducts() else { return }
             
-            if let product = products.first(where: { $0.productId == product?.productId }) {
-                completion(product)
+            if let productViewModel = products.first(where: { $0.productId == product?.productId }) {
+                completion(productViewModel)
             }
         }
     }
