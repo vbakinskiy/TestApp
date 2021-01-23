@@ -17,6 +17,7 @@ class ProductsViewModelController {
     
     //MARK: - Private properties
     
+    private let coreDataManager = CoreDataManager()
     private var productViewModels: [ProductViewModel] = []
     private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     
@@ -27,17 +28,23 @@ class ProductsViewModelController {
     }
     
     public func getProductViewModels(completion: @escaping () -> ()) {
-        NetworkManager.decodeJson(url: url) { (json: Json?) in
-            guard let products = json else { return }
-            for product in products.products {
-                let product = ProductViewModel(productId: product.productId,
-                                               imageUrl: product.image,
-                                               name: product.name,
-                                               price: product.price,
-                                               description: nil)
-                self.productViewModels.append(product)
+        if ReachabilityManager.isNetworkAvailable {
+            NetworkManager.decodeJson(url: url) { (json: Json?) in
+                guard let products = json else { return }
+                for product in products.products {
+                    let productViewModel = ProductViewModel(productId: product.productId,
+                                                            imageUrl: product.image,
+                                                            name: product.name,
+                                                            price: product.price,
+                                                            description: nil)
+                    self.coreDataManager.save(productViewModel)
+                    self.productViewModels.append(productViewModel)
+                }
+                completion()
             }
-            completion()
+        } else {
+            guard let products = coreDataManager.getProducts() else { return }
+            productViewModels = products
         }
     }
 }
