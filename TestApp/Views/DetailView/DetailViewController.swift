@@ -63,4 +63,7 @@ class DetailsViewController: UIViewController {
         descriptionLabel.text = detailsViewViewModel?.description
         imageView.fetchImage(with: detailsViewViewModel?.imageUrl) {}
     }
+    @IBAction func closeButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
