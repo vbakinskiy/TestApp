@@ -102,6 +102,7 @@
 		1D0923D825B974A9004435D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1D82463A25B942BC00FDAA9B /* LaunchScreen.storyboard */,
 				1D0923D625B97154004435D4 /* CollectionView */,
 				1D0923D325B96FD4004435D4 /* CollectionViewCell */,
 				1D6EE55725BA8B5400B51304 /* DetailView */,
@@ -122,10 +123,7 @@
 		1D0923DA25B974EB004435D4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1D5742F125BB0DA70047F39A /* CoreData */,
 				1D0923DF25B975EE004435D4 /* JsonModel.swift */,
-				1D0923E525B978CE004435D4 /* NetworkManager.swift */,
-				1D6EE55225B9C5E700B51304 /* CacheManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,10 +133,45 @@
 			children = (
 				1D5742F225BB0DE40047F39A /* ProductEntity+CoreDataClass.swift */,
 				1D5742F325BB0DE40047F39A /* ProductEntity+CoreDataProperties.swift */,
-				1D5742F725BB0E070047F39A /* CoreDataManager.swift */,
 				1D82463525B942BB00FDAA9B /* TestApp.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		1D6EAAA025BD69F7002095F6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				1D82462C25B942BB00FDAA9B /* AppDelegate.swift */,
+				1D82462E25B942BB00FDAA9B /* SceneDelegate.swift */,
+				1D82463D25B942BC00FDAA9B /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		1D6EAAA225BD6A33002095F6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1D0923E525B978CE004435D4 /* NetworkManager.swift */,
+				1D6EE55225B9C5E700B51304 /* CacheManager.swift */,
+				1D5742F725BB0E070047F39A /* CoreDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		1D6EAAA425BD6A6A002095F6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1D82463825B942BC00FDAA9B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1D6EAAA525BD6A83002095F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D6EE54C25B9A6F100B51304 /* UIImageView + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1D6EE55725BA8B5400B51304 /* DetailView */ = {
@@ -171,15 +204,14 @@
 		1D82462B25B942BB00FDAA9B /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				1D6EAAA025BD69F7002095F6 /* Application */,
 				1D0923DA25B974EB004435D4 /* Models */,
+				1D5742F125BB0DA70047F39A /* CoreData */,
+				1D6EAAA225BD6A33002095F6 /* Managers */,
 				1D0923D825B974A9004435D4 /* Views */,
 				1D0923D925B974BA004435D4 /* ViewModels */,
-				1D82462C25B942BB00FDAA9B /* AppDelegate.swift */,
-				1D6EE54C25B9A6F100B51304 /* UIImageView + Extension.swift */,
-				1D82462E25B942BB00FDAA9B /* SceneDelegate.swift */,
-				1D82463825B942BC00FDAA9B /* Assets.xcassets */,
-				1D82463A25B942BC00FDAA9B /* LaunchScreen.storyboard */,
-				1D82463D25B942BC00FDAA9B /* Info.plist */,
+				1D6EAAA525BD6A83002095F6 /* Extensions */,
+				1D6EAAA425BD6A6A002095F6 /* Resources */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -473,7 +505,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3RAD78J533;
-				INFOPLIST_FILE = TestApp/Info.plist;
+				INFOPLIST_FILE = TestApp/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,7 +525,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3RAD78J533;
-				INFOPLIST_FILE = TestApp/Info.plist;
+				INFOPLIST_FILE = TestApp/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
