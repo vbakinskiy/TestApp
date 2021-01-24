@@ -11,7 +11,7 @@ class CollectionViewController: UIViewController {
     
     //MARK: - Private properties
     
-    private let collectionViewViewModel = CollectionViewViewModel()
+    private var viewModel: CollectionViewViewModelType?
     
     private var numberOfItemsPerRow: CGFloat {
         switch UIDevice.current.orientation {
@@ -36,6 +36,7 @@ class CollectionViewController: UIViewController {
         registerCell()
         setupCollectionViewLoyout()
         setupActivityIndicator()
+        setupViewModel()
         getProducts()
     }
     
@@ -65,9 +66,13 @@ class CollectionViewController: UIViewController {
         activityIndicator.stopAnimating()
     }
     
+    private func setupViewModel() {
+        viewModel = CollectionViewViewModel()
+    }
+    
     private func getProducts() {
         showActivityIndicator()
-        collectionViewViewModel.getProducts {
+        viewModel?.getProducts {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.hideActivityIndicator()
@@ -79,7 +84,7 @@ class CollectionViewController: UIViewController {
         let storyboard = UIStoryboard(name: "DetailView", bundle: nil)
         
         if let vc = storyboard.instantiateViewController(withIdentifier: "DetailView") as? DetailsViewController {
-            vc.detailViewViewModel = collectionViewViewModel.detailViewModel(for: indexPath)
+            vc.detailViewViewModel = viewModel?.detailViewModel(for: indexPath)
             present(vc, animated: true, completion: nil)
         }
     }
@@ -95,13 +100,13 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionViewViewModel.numberOfRows()
+        viewModel?.numberOfRows() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseId, for: indexPath) as? CollectionViewCell
         guard let collectionViewCell = cell else { return UICollectionViewCell() }
-        collectionViewCell.cellViewModel = collectionViewViewModel.cellViewModel(for: indexPath)
+        collectionViewCell.cellViewModel = viewModel?.cellViewModel(for: indexPath)
         
         return collectionViewCell
     }

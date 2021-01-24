@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CollectionViewViewModel {
+class CollectionViewViewModel: CollectionViewViewModelType {
     
     //MARK: - Private properties
     
@@ -21,11 +21,11 @@ class CollectionViewViewModel {
         products.count
     }
     
-    public func cellViewModel(for indexPath: IndexPath) -> CellViewModel {
+    public func cellViewModel(for indexPath: IndexPath) -> CellViewModelType {
         CellViewModel(product: products[indexPath.row])
     }
     
-    public func detailViewModel(for indexPath: IndexPath) -> DetailViewViewModel {
+    public func detailViewModel(for indexPath: IndexPath) -> DetailViewViewModelType {
         DetailViewViewModel(product: products[indexPath.row])
     }
     

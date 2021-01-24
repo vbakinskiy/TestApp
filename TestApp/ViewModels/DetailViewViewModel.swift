@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailViewViewModel {
+class DetailViewViewModel: DetailViewViewModelType {
     
     //MARK: - Private properties
     

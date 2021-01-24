@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CellViewModel {
+class CellViewModel: CellViewModelType {
     
     //MARK: - Private properties
     

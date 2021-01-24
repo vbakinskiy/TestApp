@@ -11,7 +11,7 @@ class DetailsViewController: UIViewController {
     
     //MARK: - Public properties
     
-    var detailViewViewModel: DetailViewViewModel?
+    var detailViewViewModel: DetailViewViewModelType?
     
     //MARK: - @IBOutlets
     
