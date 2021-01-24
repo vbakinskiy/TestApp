@@ -5,7 +5,7 @@
 //  Created by Vyacheslav Bakinskiy on 1/21/21.
 //
 
-import UIKit
+import Foundation
 import Alamofire
 
 class NetworkManager {

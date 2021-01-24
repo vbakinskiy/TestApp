@@ -113,8 +113,8 @@
 		1D0923D925B974BA004435D4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1D6EE54825B9973000B51304 /* CellViewModel.swift */,
 				1D0923E225B977E3004435D4 /* CollectionViewViewModel.swift */,
+				1D6EE54825B9973000B51304 /* CellViewModel.swift */,
 				1D6EE56325BA9B9D00B51304 /* DetailViewViewModel.swift */,
 			);
 			path = ViewModels;

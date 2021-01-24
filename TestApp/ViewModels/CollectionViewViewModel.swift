@@ -9,12 +9,6 @@ import Foundation
 
 class CollectionViewViewModel {
     
-    //MARK: - Public properties
-    
-    public var numberOfRows: Int {
-        products.count
-    }
-    
     //MARK: - Private properties
     
     private let coreDataManager = CoreDataManager()
@@ -22,6 +16,10 @@ class CollectionViewViewModel {
     private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     
     //MARK: - Public funcs
+    
+    public func numberOfRows() -> Int {
+        products.count
+    }
     
     public func cellViewModel(for indexPath: IndexPath) -> CellViewModel {
         CellViewModel(product: products[indexPath.row])

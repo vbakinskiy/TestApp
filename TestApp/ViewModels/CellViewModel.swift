@@ -8,11 +8,12 @@
 import Foundation
 
 class CellViewModel {
+    
+    //MARK: - Private properties
+    
     private var product: Product
     
-    var productId: String? {
-        product.productId
-    }
+    //MARK: - Public properties
     
     var imageUrl: String? {
         product.image
@@ -25,6 +26,8 @@ class CellViewModel {
     var price: String? {
         "$\(product.price ?? 0)"
     }
+    
+    //MARK: - Init
     
     init(product: Product) {
         self.product = product

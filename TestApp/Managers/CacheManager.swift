@@ -8,7 +8,12 @@
 import UIKit
 
 class CacheManager {
+    
+    //MARK: - Private properties
+    
     private static let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+    
+    //MARK: - Public funcs
     
     static func getCachedImage(withName: String) -> UIImage? {
         let fileURL = directoryURL.appendingPathComponent(withName)

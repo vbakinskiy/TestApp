@@ -16,29 +16,21 @@ class DetailViewViewModel {
     
     //MARK: - Public properties
     
-    public var productId: String? {
-        productDetail?.productId
-    }
-    
-    public var imageUrl: String? {
+    var imageUrl: String? {
         productDetail?.image
     }
     
-    public var name: String? {
+    var name: String? {
         productDetail?.name
     }
     
-    public var price: String? {
-        "\(productDetail?.price ?? 0)"
-    }
-    
-    public var description: String? {
+    var description: String? {
         productDetail?.description
     }
     
-    //MARK: - Public init
+    //MARK: - Init
     
-    public init(product: Product?) {
+    init(product: Product?) {
         self.product = product
     }
     

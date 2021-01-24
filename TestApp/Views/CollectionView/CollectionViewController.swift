@@ -15,8 +15,6 @@ class CollectionViewController: UIViewController {
     
     private var numberOfItemsPerRow: CGFloat {
         switch UIDevice.current.orientation {
-        case .portrait, .portraitUpsideDown:
-            return 2
         case .landscapeLeft, .landscapeRight:
             return 4
         default:
@@ -81,7 +79,7 @@ class CollectionViewController: UIViewController {
         let storyboard = UIStoryboard(name: "DetailView", bundle: nil)
         
         if let vc = storyboard.instantiateViewController(withIdentifier: "DetailView") as? DetailsViewController {
-            vc.detailsViewViewModel = collectionViewViewModel.detailViewModel(for: indexPath)
+            vc.detailViewViewModel = collectionViewViewModel.detailViewModel(for: indexPath)
             present(vc, animated: true, completion: nil)
         }
     }
@@ -97,7 +95,7 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionViewViewModel.numberOfRows
+        collectionViewViewModel.numberOfRows()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

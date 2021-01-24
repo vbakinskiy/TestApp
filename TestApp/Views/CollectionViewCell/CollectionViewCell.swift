@@ -13,7 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     static let reuseId = "CollectionViewCell"
     
-    public var cellViewModel: CellViewModel? {
+    var cellViewModel: CellViewModel? {
         didSet {
             setupCell()
         }

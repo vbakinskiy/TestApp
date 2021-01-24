@@ -11,7 +11,7 @@ class DetailsViewController: UIViewController {
     
     //MARK: - Public properties
     
-    var detailsViewViewModel: DetailViewViewModel?
+    var detailViewViewModel: DetailViewViewModel?
     
     //MARK: - @IBOutlets
     
@@ -50,7 +50,7 @@ class DetailsViewController: UIViewController {
     
     private func getProduct() {
         showActivityIndicator()
-        detailsViewViewModel?.getProductDetail {
+        detailViewViewModel?.getProductDetail {
             DispatchQueue.main.async {
                 self.setupView()
                 self.hideActivityIndicator()
@@ -59,10 +59,13 @@ class DetailsViewController: UIViewController {
     }
     
     private func setupView() {
-        nameLabel.text = detailsViewViewModel?.name
-        descriptionLabel.text = detailsViewViewModel?.description
-        imageView.fetchImage(with: detailsViewViewModel?.imageUrl) {}
+        nameLabel.text = detailViewViewModel?.name
+        descriptionLabel.text = detailViewViewModel?.description
+        imageView.fetchImage(with: detailViewViewModel?.imageUrl) {}
     }
+    
+    //MARK: - @IBActions
+    
     @IBAction func closeButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
