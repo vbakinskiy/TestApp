@@ -11,8 +11,14 @@ class DetailViewViewModel: DetailViewViewModelType {
     
     //MARK: - Private properties
     
+    private let coreDataManager = CoreDataManager()
     private var product: Product?
     private var productDetail: Product?
+    
+    private var productUrl: String? {
+        guard let productId = product?.productId else { return nil }
+        return "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/\(productId)/detail"
+    }
     
     //MARK: - Public properties
     
@@ -34,23 +40,11 @@ class DetailViewViewModel: DetailViewViewModelType {
         self.product = product
     }
     
-    //MARK: - Private properties
-    
-    private let coreDataManager = CoreDataManager()
-    
-    private var url: String {
-        if let productId = product?.productId {
-            return "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/\(productId)/detail"
-        } else {
-            return ""
-        }
-    }
-    
     //MARK: - Public funcs
     
     public func getProductDetail(completion: @escaping () -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(url: url) { (product: Product?) in
+            NetworkManager.decodeJson(from: productUrl) { (product: Product?) in
                 guard let product = product else { return }
                 self.productDetail = product
                 self.coreDataManager.save(product)

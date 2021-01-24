@@ -31,7 +31,7 @@ class CollectionViewViewModel: CollectionViewViewModelType {
     
     public func getProducts(completion: @escaping () -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(url: url) { (json: Json?) in
+            NetworkManager.decodeJson(from: url) { (json: Json?) in
                 guard let json = json else { return }
                 for product in json.products {
                     self.products.append(product)

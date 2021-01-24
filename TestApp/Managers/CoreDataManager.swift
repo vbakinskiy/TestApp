@@ -63,6 +63,7 @@ class CoreDataManager {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
+            
             if let object = objects.first(where: { $0.productId == product.productId }) {
                 if product.description != nil {
                     object.setValue(product.description, forKey: "descript")

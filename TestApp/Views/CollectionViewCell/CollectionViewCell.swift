@@ -28,31 +28,22 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupActivityIndicator()
+        activityIndicator.hidesWhenStopped = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
     }
     
     //MARK: - Private funcs
     
-    private func setupActivityIndicator() {
-        activityIndicator.hidesWhenStopped = true
-    }
-    
-    private func showActivityIndicator() {
-        activityIndicator.startAnimating()
-    }
-    
-    private func hideActivityIndicator() {
-        activityIndicator.stopAnimating()
-    }
-    
     private func setupCell() {
-        showActivityIndicator()
+        activityIndicator.startAnimating()
         nameLabel.text = cellViewModel?.name
         priceLabel.text = cellViewModel?.price
-        imageView.fetchImage(with: cellViewModel?.imageUrl) {
-            DispatchQueue.main.async {
-                self.hideActivityIndicator()
-            }
+        imageView.fetchImage(from: cellViewModel?.imageUrl) {
+            self.activityIndicator.stopAnimating()
         }
     }
 }

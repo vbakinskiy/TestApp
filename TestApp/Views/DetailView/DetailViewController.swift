@@ -61,7 +61,7 @@ class DetailsViewController: UIViewController {
     private func setupView() {
         nameLabel.text = detailViewViewModel?.name
         descriptionLabel.text = detailViewViewModel?.description
-        imageView.fetchImage(with: detailViewViewModel?.imageUrl) {}
+        imageView.fetchImage(from: detailViewViewModel?.imageUrl) {}
     }
     
     //MARK: - @IBActions

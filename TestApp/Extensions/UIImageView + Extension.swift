@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImageView {
-    func fetchImage(with url: String?, completion: @escaping () -> ()) {
+    func fetchImage(from url: String?, completion: @escaping () -> ()) {
         guard let url = url, let imageUrl = URL(string: url) else { return }
         let fileName = imageUrl.lastPathComponent
         
@@ -24,7 +24,6 @@ extension UIImageView {
             if let error = error {
                 print(error.localizedDescription)
                 DispatchQueue.main.async {
-                    self?.image = nil
                     completion()
                 }
                 return

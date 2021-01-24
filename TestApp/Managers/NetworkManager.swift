@@ -18,21 +18,27 @@ class NetworkManager {
     
     //MARK: - Public funcs
     
-    static func decodeJson<T: Codable>(url: String, completion: @escaping (T?) -> ()) {
-        guard let url = URL(string: url) else { return }
+    static func decodeJson<T: Codable>(from url: String?, completion: @escaping (T?) -> ()) {
+        guard let urlString = url, let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
         URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else {
-                print("Can't fetch data")
-                return completion(nil)
+            if let error = error {
+                print(error.localizedDescription)
+                completion(nil)
+                return
             }
             
+            guard let data = data else { return completion(nil) }
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            if let json = try? decoder.decode(T.self, from: data) {
+            do {
+                let json = try decoder.decode(T.self, from: data)
                 completion(json)
-            } else {
-                print("Can't decode json")
+            } catch {
+                print(error.localizedDescription)
                 completion(nil)
             }
         }.resume()

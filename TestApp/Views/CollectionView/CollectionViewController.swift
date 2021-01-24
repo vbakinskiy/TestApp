@@ -12,6 +12,7 @@ class CollectionViewController: UIViewController {
     //MARK: - Private properties
     
     private var viewModel: CollectionViewViewModelType?
+    private let spacing: CGFloat = 16
     
     private var numberOfItemsPerRow: CGFloat {
         switch UIDevice.current.orientation {
@@ -21,8 +22,6 @@ class CollectionViewController: UIViewController {
             return 2
         }
     }
-    
-    private let spacing: CGFloat = 16
     
     //MARK: - @IBOutlets
     
@@ -58,29 +57,21 @@ class CollectionViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
     }
     
-    private func showActivityIndicator() {
-        activityIndicator.startAnimating()
-    }
-    
-    private func hideActivityIndicator() {
-        activityIndicator.stopAnimating()
-    }
-    
     private func setupViewModel() {
         viewModel = CollectionViewViewModel()
     }
     
     private func getProducts() {
-        showActivityIndicator()
+        activityIndicator.startAnimating()
         viewModel?.getProducts {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                self.hideActivityIndicator()
+                self.activityIndicator.stopAnimating()
             }
         }
     }
     
-    private func showDetails(indexPath: IndexPath) {
+    private func showDetails(for indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "DetailView", bundle: nil)
         
         if let vc = storyboard.instantiateViewController(withIdentifier: "DetailView") as? DetailsViewController {
@@ -119,7 +110,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showDetails(indexPath: indexPath)
+        showDetails(for: indexPath)
     }
 }
 
