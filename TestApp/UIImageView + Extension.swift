@@ -13,19 +13,26 @@ extension UIImageView {
         let fileName = imageUrl.lastPathComponent
         
         if let cachedImage  = CacheManager.getCachedImage(withName: fileName) {
-            image = cachedImage
+            DispatchQueue.main.async {
+                self.image = cachedImage
+                completion()
+            }
             return
         }
         
-        URLSession.shared.dataTask(with: imageUrl) { [unowned self] data, _, error in
+        URLSession.shared.dataTask(with: imageUrl) { [weak self] data, _, error in
             if let error = error {
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self?.image = nil
+                    completion()
+                }
                 return
             }
             
             if let data = data {
                 DispatchQueue.main.async {
-                    self.image = UIImage(data: data)
+                    self?.image = UIImage(data: data)
                     CacheManager.saveImageToCache(data: data, withName: fileName)
                     completion()
                 }

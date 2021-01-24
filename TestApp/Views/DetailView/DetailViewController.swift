@@ -1,5 +1,5 @@
 //
-//  ProductDetailViewController.swift
+//  DetailsViewController.swift
 //  TestApp
 //
 //  Created by Vyacheslav Bakinskiy on 1/22/21.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ProductDetailViewController: UIViewController {
+class DetailsViewController: UIViewController {
     
     //MARK: - Public properties
     
-    let productDetailViewModelController = ProductDetailViewModelController()
+    var detailsViewViewModel: DetailViewViewModel?
     
     //MARK: - @IBOutlets
     
@@ -50,17 +50,17 @@ class ProductDetailViewController: UIViewController {
     
     private func getProduct() {
         showActivityIndicator()
-        productDetailViewModelController.getProductViewModel { product in
+        detailsViewViewModel?.getProductDetail {
             DispatchQueue.main.async {
-                self.setupView(with: product)
+                self.setupView()
                 self.hideActivityIndicator()
             }
         }
     }
     
-    private func setupView(with product: ProductViewModel?) {
-        nameLabel.text = product?.name
-        descriptionLabel.text = product?.description
-        imageView.fetchImage(with: product?.imageUrl) {}
+    private func setupView() {
+        nameLabel.text = detailsViewViewModel?.name
+        descriptionLabel.text = detailsViewViewModel?.description
+        imageView.fetchImage(with: detailsViewViewModel?.imageUrl) {}
     }
 }

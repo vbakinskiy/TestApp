@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ProductCell: UICollectionViewCell {
+class CollectionViewCell: UICollectionViewCell {
     
     //MARK: - Public properties
     
-    static let reuseId = "ProductCell"
+    static let reuseId = "CollectionViewCell"
     
-    var cellModel: ProductViewModel? {
+    public var cellViewModel: CellViewModel? {
         didSet {
             setupCell()
         }
@@ -47,10 +47,12 @@ class ProductCell: UICollectionViewCell {
     
     private func setupCell() {
         showActivityIndicator()
-        imageView.fetchImage(with: cellModel?.imageUrl) {
-            self.hideActivityIndicator()
+        nameLabel.text = cellViewModel?.name
+        priceLabel.text = cellViewModel?.price
+        imageView.fetchImage(with: cellViewModel?.imageUrl) {
+            DispatchQueue.main.async {
+                self.hideActivityIndicator()
+            }
         }
-        nameLabel.text = cellModel?.name
-        priceLabel.text = "$\(cellModel?.price ?? 0)"
     }
 }

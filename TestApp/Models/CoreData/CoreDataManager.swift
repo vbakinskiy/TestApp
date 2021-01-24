@@ -34,7 +34,7 @@ class CoreDataManager {
     
     //MARK: - Private funcs
     
-    private func getAction(for product: ProductViewModel) -> Action {
+    private func getAction(for product: Product) -> Action {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
@@ -50,26 +50,26 @@ class CoreDataManager {
         }
     }
     
-    private func createEntity(from product: ProductViewModel) {
+    private func createEntity(from product: Product) {
         let productEntity = ProductEntity(context: context)
         productEntity.productId = product.productId
-        productEntity.imageUrl = product.imageUrl
+        productEntity.imageUrl = product.image
         productEntity.name = product.name
         productEntity.price = String(product.price ?? 0)
         productEntity.descript = product.description
     }
     
-    private func overwriteEntity(with product: ProductViewModel) {
+    private func overwriteEntity(with product: Product) {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
-            if let object = objects.first(where: { $0.name == product.name }) {
+            if let object = objects.first(where: { $0.productId == product.productId }) {
                 if product.description != nil {
                     object.setValue(product.description, forKey: "descript")
                 }
                 object.setValue(product.name, forKey: "name")
                 object.setValue(String(product.price ?? 0), forKey: "price")
-                object.setValue(product.imageUrl, forKey: "imageUrl")
+                object.setValue(product.image, forKey: "imageUrl")
             }
         } catch {
             print(error.localizedDescription)
@@ -78,7 +78,7 @@ class CoreDataManager {
     
     //MARK: - Public funcs
     
-    public func save(_ product: ProductViewModel?) {
+    public func save(_ product: Product?) {
         guard let product = product else { return }
         
         switch getAction(for: product) {
@@ -97,19 +97,19 @@ class CoreDataManager {
         }
     }
     
-    public func getProducts() -> [ProductViewModel]? {
+    public func getProducts() -> [Product]? {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         
         do {
             let productEntities = try context.fetch(fetchRequest)
-            var products: [ProductViewModel] = []
+            var products: [Product] = []
             
             for entity in productEntities {
-                let product = ProductViewModel(productId: entity.productId,
-                                               imageUrl: entity.imageUrl,
-                                               name: entity.name,
-                                               price: Int(entity.price ?? ""),
-                                               description: entity.descript)
+                let product = Product(productId: entity.productId,
+                                      image: entity.imageUrl,
+                                      name: entity.name,
+                                      price: Int(entity.price ?? ""),
+                                      description: entity.descript)
                 products.append(product)
             }
             

@@ -1,5 +1,5 @@
 //
-//  ProductsViewController.swift
+//  CollectionViewController.swift
 //  TestApp
 //
 //  Created by Vyacheslav Bakinskiy on 1/21/21.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ProductsViewController: UIViewController {
+class CollectionViewController: UIViewController {
     
     //MARK: - Private properties
     
-    private let productsViewModelController = ProductsViewModelController()
+    private let collectionViewViewModel = CollectionViewViewModel()
     
     private var numberOfItemsPerRow: CGFloat {
         switch UIDevice.current.orientation {
@@ -69,7 +69,7 @@ class ProductsViewController: UIViewController {
     
     private func getProducts() {
         showActivityIndicator()
-        productsViewModelController.getProductViewModels {
+        collectionViewViewModel.getProductViewModels {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.hideActivityIndicator()
@@ -77,11 +77,11 @@ class ProductsViewController: UIViewController {
         }
     }
     
-    private func showDetails(index: Int) {
-        let storyboard = UIStoryboard(name: "ProductDetailView", bundle: nil)
+    private func showDetails(indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "DetailsView", bundle: nil)
         
-        if let vc = storyboard.instantiateViewController(withIdentifier: "ProductDetailView") as? ProductDetailViewController {
-            vc.productDetailViewModelController.product = productsViewModelController.product(at: index)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "DetailsView") as? DetailsViewController {
+            vc.detailsViewViewModel = collectionViewViewModel.detailViewModel(for: indexPath)
             present(vc, animated: true, completion: nil)
         }
     }
@@ -95,15 +95,15 @@ class ProductsViewController: UIViewController {
 
 //MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 
-extension ProductsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        productsViewModelController.productsCount
+        collectionViewViewModel.numberOfRows
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCell.reuseId, for: indexPath) as! ProductCell
         
-        cell.cellModel = productsViewModelController.product(at: indexPath.row)
+        cell.cellViewModel = collectionViewViewModel.cellViewModel(for: indexPath)
         
         return cell
     }
@@ -116,7 +116,7 @@ extension ProductsViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showDetails(index: indexPath.row)
+        showDetails(indexPath: indexPath)
     }
 }
 

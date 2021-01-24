@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Product Detail View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="Qtk-gG-eHL">
             <objects>
-                <viewController storyboardIdentifier="ProductDetailView" id="ktF-Y6-GYH" customClass="ProductDetailViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailView" id="ktF-Y6-GYH" customClass="DetailsViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y2w-7G-91K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="e6l-zf-X83" customClass="ProductCell" customModule="TestApp" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="e6l-zf-X83" customClass="CollectionViewCell" customModule="TestApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3uF-A6-d9C">
@@ -40,9 +40,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrO-kS-PWW">
                         <rect key="frame" x="5" y="5" width="140" height="93.5"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-JW-Ia0">
-                                <rect key="frame" x="60" y="36" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-JW-Ia0">
+                                <rect key="frame" x="60" y="36.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-BH-XaH">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="93.5"/>
@@ -55,7 +54,9 @@
                         <constraints>
                             <constraint firstItem="Oa2-BH-XaH" firstAttribute="bottom" secondItem="xrO-kS-PWW" secondAttribute="bottom" id="1sy-rR-YPF"/>
                             <constraint firstItem="Oa2-BH-XaH" firstAttribute="leading" secondItem="xrO-kS-PWW" secondAttribute="leading" id="2kL-hz-Sin"/>
+                            <constraint firstItem="bvi-JW-Ia0" firstAttribute="centerX" secondItem="xrO-kS-PWW" secondAttribute="centerX" id="6Ff-sC-aj5"/>
                             <constraint firstItem="Oa2-BH-XaH" firstAttribute="bottom" secondItem="xrO-kS-PWW" secondAttribute="bottom" id="S9g-vp-tGs"/>
+                            <constraint firstItem="bvi-JW-Ia0" firstAttribute="centerY" secondItem="xrO-kS-PWW" secondAttribute="centerY" id="Z2C-qR-dU9"/>
                             <constraint firstItem="Oa2-BH-XaH" firstAttribute="trailing" secondItem="xrO-kS-PWW" secondAttribute="trailing" id="d0L-Aq-e9l"/>
                             <constraint firstAttribute="width" secondItem="xrO-kS-PWW" secondAttribute="height" multiplier="3:2" id="oBE-jb-Wos"/>
                         </constraints>
