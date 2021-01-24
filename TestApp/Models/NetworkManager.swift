@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import Alamofire
 
 class NetworkManager {
+    
+    //MARK: - Public properties
+    
+    static var isNetworkAvailable: Bool {
+        NetworkReachabilityManager()!.isReachable
+    }
+    
+    //MARK: - Public funcs
+    
     static func decodeJson<T: Codable>(url: String, completion: @escaping (T?) -> ()) {
         guard let url = URL(string: url) else { return }
         URLSession.shared.dataTask(with: url) { data, _, error in

@@ -57,7 +57,7 @@ class DetailViewViewModel {
     //MARK: - Public funcs
     
     public func getProductDetail(completion: @escaping () -> ()) {
-        if ReachabilityManager.isNetworkAvailable {
+        if NetworkManager.isNetworkAvailable {
             NetworkManager.decodeJson(url: url) { (product: Product?) in
                 guard let product = product else { return }
                 self.productDetail = product

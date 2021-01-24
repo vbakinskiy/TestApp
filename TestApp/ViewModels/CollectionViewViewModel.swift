@@ -32,7 +32,7 @@ class CollectionViewViewModel {
     }
     
     public func getProducts(completion: @escaping () -> ()) {
-        if ReachabilityManager.isNetworkAvailable {
+        if NetworkManager.isNetworkAvailable {
             NetworkManager.decodeJson(url: url) { (json: Json?) in
                 guard let json = json else { return }
                 for product in json.products {
