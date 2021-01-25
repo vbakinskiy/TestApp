@@ -33,6 +33,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageView.contentMode = .scaleAspectFill
         imageView.image = nil
     }
     

@@ -38,7 +38,8 @@ class DetailViewViewModel: DetailViewViewModelType {
     
     public func getProductDetail(completion: @escaping (Error?) -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(from: API.productURL(product)) { [weak self] (product: Product?, error)  in
+            NetworkManager.decodeJson(from: API.productURL(product)) {
+                [weak self] (product: Product?, error)  in
                 if let error = error {
                     completion(error)
                     return
@@ -62,7 +63,8 @@ class DetailViewViewModel: DetailViewViewModelType {
                     return
                 }
                 
-                if let product = products?.first(where: { $0.productId == self?.product?.productId }) {
+                if let product = products?
+                    .first(where: { $0.productId == self?.product?.productId }) {
                     self?.productDetail = product
                     completion(nil)
                 }

@@ -18,7 +18,8 @@ class NetworkManager {
     
     //MARK: - Public funcs
     
-    static func decodeJson<T: Codable>(from url: URL?, completion: @escaping (T?, Error?) -> ()) {
+    static func decodeJson<T: Codable>(from url: URL?,
+                                       completion: @escaping (T?, Error?) -> ()) {
         guard let url = url else {
             let error: Error = CustomError.urlError
             completion(nil, error)

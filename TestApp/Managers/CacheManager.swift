@@ -11,7 +11,8 @@ class CacheManager {
     
     //MARK: - Private properties
     
-    private static let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+    private static let directoryURL = URL(fileURLWithPath: NSTemporaryDirectory(),
+                                          isDirectory: true)
     
     //MARK: - Public funcs
     

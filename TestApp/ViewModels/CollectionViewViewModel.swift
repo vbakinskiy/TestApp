@@ -29,7 +29,8 @@ class CollectionViewViewModel: CollectionViewViewModelType {
     
     public func getProducts(completion: @escaping (Error?) -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(from: API.baseURL) { [weak self] (json: Json?, error) in
+            NetworkManager.decodeJson(from: API.baseURL) {
+                [weak self] (json: Json?, error) in
                 if let error = error {
                     completion(error)
                     return

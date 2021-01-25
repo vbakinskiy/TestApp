@@ -8,7 +8,8 @@
 import Foundation
 
 struct API {
-    static let baseURL = URL("https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list")
+    static let baseURL =
+        URL("https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list")
     
     static func productURL(_ product: Product?) -> URL? {
         guard let product = product,

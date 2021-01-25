@@ -20,7 +20,7 @@ class CoreDataManager {
     
     private static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TestApp")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { storeDescription, error in
             if let error = error {
                 print(error.localizedDescription)
             }
