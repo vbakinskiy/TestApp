@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-enum Action {
+fileprivate enum Action {
     case write
     case owerwrite
     case error
@@ -18,7 +18,7 @@ class CoreDataManager {
     
     //MARK: - Private properties
     
-    private lazy var persistentContainer: NSPersistentContainer = {
+    private static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TestApp")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error {
@@ -28,13 +28,13 @@ class CoreDataManager {
         return container
     }()
     
-    private lazy var context: NSManagedObjectContext = {
+    private static var context: NSManagedObjectContext = {
         persistentContainer.viewContext
     }()
     
     //MARK: - Private funcs
     
-    private func getAction(for product: Product) -> Action {
+    private static func getAction(for product: Product) -> Action {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
@@ -50,7 +50,7 @@ class CoreDataManager {
         }
     }
     
-    private func createEntity(from product: Product) {
+    private static func createEntity(from product: Product) {
         let productEntity = ProductEntity(context: context)
         productEntity.productId = product.productId
         productEntity.imageUrl = product.image
@@ -59,7 +59,7 @@ class CoreDataManager {
         productEntity.descript = product.description
     }
     
-    private func overwriteEntity(with product: Product) {
+    private static func overwriteEntity(with product: Product) {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
@@ -79,7 +79,7 @@ class CoreDataManager {
     
     //MARK: - Public funcs
     
-    public func save(_ product: Product?, completion: @escaping (Error?) -> ()) {
+    static func save(_ product: Product?, completion: @escaping (Error?) -> ()) {
         guard let product = product else { return }
         let action = getAction(for: product)
         
@@ -102,7 +102,7 @@ class CoreDataManager {
         }
     }
     
-    public func getProducts(completion: @escaping ([Product]?, Error?) -> ()) {
+    static func getProducts(completion: @escaping ([Product]?, Error?) -> ()) {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         
         do {

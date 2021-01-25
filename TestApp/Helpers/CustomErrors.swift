@@ -21,6 +21,4 @@ extension CustomError: LocalizedError {
             return NSLocalizedString("Can't save product", comment: "")
         }
     }
-    
-    
 }

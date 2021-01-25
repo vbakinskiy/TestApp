@@ -11,7 +11,6 @@ class CollectionViewViewModel: CollectionViewViewModelType {
     
     //MARK: - Private properties
     
-    private let coreDataManager = CoreDataManager()
     private var products: [Product] = []
     private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     
@@ -40,7 +39,7 @@ class CollectionViewViewModel: CollectionViewViewModelType {
                 if let json = json {
                     for product in json.products {
                         self?.products.append(product)
-                        self?.coreDataManager.save(product) { error in
+                        CoreDataManager.save(product) { error in
                             if let error = error {
                                 completion(error)
                                 return
@@ -51,7 +50,7 @@ class CollectionViewViewModel: CollectionViewViewModelType {
                 }
             }
         } else {
-            coreDataManager.getProducts { [weak self] products, error in
+            CoreDataManager.getProducts { [weak self] products, error in
                 if let error = error {
                     completion(error)
                     return

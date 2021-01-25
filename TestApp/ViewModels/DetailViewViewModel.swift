@@ -11,7 +11,6 @@ class DetailViewViewModel: DetailViewViewModelType {
     
     //MARK: - Private properties
     
-    private let coreDataManager = CoreDataManager()
     private var product: Product?
     private var productDetail: Product?
     
@@ -52,7 +51,7 @@ class DetailViewViewModel: DetailViewViewModelType {
                 
                 if let product = product {
                     self?.productDetail = product
-                    self?.coreDataManager.save(product) { error in
+                    CoreDataManager.save(product) { error in
                         if let error = error {
                             completion(error)
                             return
@@ -62,7 +61,7 @@ class DetailViewViewModel: DetailViewViewModelType {
                 }
             }
         } else {
-            coreDataManager.getProducts { [weak self] products, error in
+            CoreDataManager.getProducts { [weak self] products, error in
                 if let error = error {
                     completion(error)
                     return
