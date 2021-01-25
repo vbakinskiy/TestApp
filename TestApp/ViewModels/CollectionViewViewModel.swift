@@ -12,7 +12,6 @@ class CollectionViewViewModel: CollectionViewViewModelType {
     //MARK: - Private properties
     
     private var products: [Product] = []
-    private let url = "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/list"
     
     //MARK: - Public funcs
     
@@ -30,7 +29,7 @@ class CollectionViewViewModel: CollectionViewViewModelType {
     
     public func getProducts(completion: @escaping (Error?) -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(from: url) { [weak self] (json: Json?, error) in
+            NetworkManager.decodeJson(from: API.baseURL) { [weak self] (json: Json?, error) in
                 if let error = error {
                     completion(error)
                     return

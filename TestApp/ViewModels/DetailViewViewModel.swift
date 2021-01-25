@@ -14,11 +14,6 @@ class DetailViewViewModel: DetailViewViewModelType {
     private var product: Product?
     private var productDetail: Product?
     
-    private var productUrl: String? {
-        guard let productId = product?.productId else { return nil }
-        return "https://s3-eu-west-1.amazonaws.com/developer-application-test/cart/\(productId)/detail"
-    }
-    
     //MARK: - Public properties
     
     var imageUrl: String? {
@@ -43,7 +38,7 @@ class DetailViewViewModel: DetailViewViewModelType {
     
     public func getProductDetail(completion: @escaping (Error?) -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(from: productUrl) { [weak self] (product: Product?, error)  in
+            NetworkManager.decodeJson(from: API.productURL(product)) { [weak self] (product: Product?, error)  in
                 if let error = error {
                     completion(error)
                     return
