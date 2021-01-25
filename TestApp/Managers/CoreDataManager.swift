@@ -79,26 +79,30 @@ class CoreDataManager {
     
     //MARK: - Public funcs
     
-    public func save(_ product: Product?) {
+    public func save(_ product: Product?, completion: @escaping (Error?) -> ()) {
         guard let product = product else { return }
+        let action = getAction(for: product)
         
-        switch getAction(for: product) {
+        switch action {
         case .write:
             createEntity(from: product)
         case .owerwrite:
             overwriteEntity(with: product)
         case .error:
+            let error: Error = CustomError.saveError
+            completion(error)
             break
         }
         
         do {
             try context.save()
         } catch {
-            print(error.localizedDescription)
+            context.rollback()
+            completion(error)
         }
     }
     
-    public func getProducts() -> [Product]? {
+    public func getProducts(completion: @escaping ([Product]?, Error?) -> ()) {
         let fetchRequest: NSFetchRequest<ProductEntity> = ProductEntity.fetchRequest()
         
         do {
@@ -114,10 +118,11 @@ class CoreDataManager {
                 products.append(product)
             }
             
-            return products
+            completion(products, nil)
+            return
         } catch {
-            print(error.localizedDescription)
-            return nil
+            completion(nil, error)
+            return
         }
     }
 }

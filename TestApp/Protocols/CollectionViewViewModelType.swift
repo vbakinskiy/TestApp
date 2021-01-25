@@ -11,5 +11,5 @@ protocol CollectionViewViewModelType {
     func numberOfRows() -> Int
     func cellViewModel(for indexPath: IndexPath) -> CellViewModelType
     func detailViewModel(for indexPath: IndexPath) -> DetailViewViewModelType
-    func getProducts(completion: @escaping () -> ())
+    func getProducts(completion: @escaping (Error?) -> ())
 }

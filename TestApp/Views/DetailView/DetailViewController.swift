@@ -50,10 +50,14 @@ class DetailsViewController: UIViewController {
     
     private func getProduct() {
         showActivityIndicator()
-        detailViewViewModel?.getProductDetail {
+        detailViewViewModel?.getProductDetail { [weak self] error in
             DispatchQueue.main.async {
-                self.setupView()
-                self.hideActivityIndicator()
+                if let error = error {
+                    AlertManager.showErrorMessage(self, error)
+                }
+                
+                self?.setupView()
+                self?.hideActivityIndicator()
             }
         }
     }

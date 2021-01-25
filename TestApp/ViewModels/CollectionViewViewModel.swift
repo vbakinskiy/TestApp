@@ -29,20 +29,39 @@ class CollectionViewViewModel: CollectionViewViewModelType {
         DetailViewViewModel(product: products[indexPath.row])
     }
     
-    public func getProducts(completion: @escaping () -> ()) {
+    public func getProducts(completion: @escaping (Error?) -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(from: url) { (json: Json?) in
-                guard let json = json else { return }
-                for product in json.products {
-                    self.products.append(product)
-                    self.coreDataManager.save(product)
+            NetworkManager.decodeJson(from: url) { [weak self] (json: Json?, error) in
+                if let error = error {
+                    completion(error)
+                    return
                 }
-                completion()
+                
+                if let json = json {
+                    for product in json.products {
+                        self?.products.append(product)
+                        self?.coreDataManager.save(product) { error in
+                            if let error = error {
+                                completion(error)
+                                return
+                            }
+                        }
+                    }
+                    completion(nil)
+                }
             }
         } else {
-            guard let products = coreDataManager.getProducts() else { return }
-            self.products = products
-            completion()
+            coreDataManager.getProducts { [weak self] products, error in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                if let products = products {
+                    self?.products = products
+                    completion(nil)
+                }
+            }
         }
     }
 }

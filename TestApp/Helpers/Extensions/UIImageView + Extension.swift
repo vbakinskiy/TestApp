@@ -21,9 +21,10 @@ extension UIImageView {
         }
         
         URLSession.shared.dataTask(with: imageUrl) { [weak self] data, _, error in
-            if let error = error {
-                print(error.localizedDescription)
+            if let _ = error {
                 DispatchQueue.main.async {
+                    self?.image = UIImage(systemName: "photo")
+                    self?.contentMode = .scaleAspectFit
                     completion()
                 }
                 return

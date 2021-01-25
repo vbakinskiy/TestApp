@@ -11,5 +11,5 @@ protocol DetailViewViewModelType {
     var imageUrl: String? { get }
     var name: String? { get }
     var description: String? { get }
-    func getProductDetail(completion: @escaping () -> ())
+    func getProductDetail(completion: @escaping (Error?) -> ())
 }

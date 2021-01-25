@@ -63,10 +63,14 @@ class CollectionViewController: UIViewController {
     
     private func getProducts() {
         activityIndicator.startAnimating()
-        viewModel?.getProducts {
+        viewModel?.getProducts { [weak self] error in
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.activityIndicator.stopAnimating()
+                if let error = error {
+                    AlertManager.showErrorMessage(self, error)
+                }
+                
+                self?.collectionView.reloadData()
+                self?.activityIndicator.stopAnimating()
             }
         }
     }

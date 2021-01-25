@@ -18,6 +18,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="twT-1G-yP2">
                                 <rect key="frame" x="20" y="60" width="335" height="335"/>
+                                <color key="tintColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="twT-1G-yP2" secondAttribute="height" multiplier="1:1" id="05W-SR-DwG"/>
                                     <constraint firstAttribute="width" secondItem="twT-1G-yP2" secondAttribute="height" multiplier="1:1" id="9ld-Pg-NeE">
@@ -164,6 +165,9 @@
                                 <exclude reference="Uiw-lG-b1e"/>
                                 <exclude reference="gUc-9c-VA0"/>
                                 <exclude reference="gdg-Vm-nP8"/>
+                                <exclude reference="XdT-ci-3BP"/>
+                                <exclude reference="tLz-Z3-N97"/>
+                                <exclude reference="z3m-NH-okn"/>
                                 <exclude reference="6ca-BZ-HFx"/>
                                 <exclude reference="A3a-0x-UM7"/>
                                 <exclude reference="A7G-Hb-HmR"/>
@@ -187,9 +191,6 @@
                                 <exclude reference="swP-X8-d00"/>
                                 <exclude reference="v6S-lv-t5z"/>
                                 <exclude reference="yPc-T8-Nsg"/>
-                                <exclude reference="XdT-ci-3BP"/>
-                                <exclude reference="tLz-Z3-N97"/>
-                                <exclude reference="z3m-NH-okn"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
@@ -198,6 +199,7 @@
                                 <include reference="6gr-gv-Llq"/>
                                 <include reference="CHi-y1-hbF"/>
                                 <include reference="gdg-Vm-nP8"/>
+                                <include reference="tLz-Z3-N97"/>
                                 <exclude reference="6ca-BZ-HFx"/>
                                 <include reference="A3a-0x-UM7"/>
                                 <include reference="TEf-Ig-ihR"/>
@@ -205,7 +207,6 @@
                                 <include reference="mZC-ho-fku"/>
                                 <include reference="ndt-mg-y62"/>
                                 <include reference="swP-X8-d00"/>
-                                <include reference="tLz-Z3-N97"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -214,6 +215,7 @@
                                 <include reference="HDe-ha-A4D"/>
                                 <include reference="Uiw-lG-b1e"/>
                                 <include reference="gUc-9c-VA0"/>
+                                <include reference="XdT-ci-3BP"/>
                                 <include reference="A7G-Hb-HmR"/>
                                 <include reference="FkV-4K-Cnu"/>
                                 <include reference="Qnr-ez-n8H"/>
@@ -225,7 +227,6 @@
                                 <exclude reference="hQ1-q2-ETA"/>
                                 <exclude reference="v6S-lv-t5z"/>
                                 <include reference="yPc-T8-Nsg"/>
-                                <include reference="XdT-ci-3BP"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -235,12 +236,12 @@
                                 <include reference="vG9-YU-6Ao"/>
                                 <include reference="2NN-wR-sY3"/>
                                 <include reference="5em-xF-f61"/>
+                                <include reference="z3m-NH-okn"/>
                                 <include reference="ddp-TN-TVp"/>
                                 <include reference="qIK-Pe-IGF"/>
                                 <include reference="NOA-Et-YaQ"/>
                                 <include reference="eI3-Xz-mTJ"/>
                                 <include reference="nD1-vW-aNF"/>
-                                <include reference="z3m-NH-okn"/>
                             </mask>
                         </variation>
                     </view>
@@ -260,6 +261,9 @@
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

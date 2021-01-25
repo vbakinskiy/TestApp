@@ -45,6 +45,7 @@
                             </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-BH-XaH">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="93.5"/>
+                                <color key="tintColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Oa2-BH-XaH" secondAttribute="height" multiplier="3:2" id="5Zq-CP-mFx"/>
                                 </constraints>

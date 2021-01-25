@@ -42,20 +42,36 @@ class DetailViewViewModel: DetailViewViewModelType {
     
     //MARK: - Public funcs
     
-    public func getProductDetail(completion: @escaping () -> ()) {
+    public func getProductDetail(completion: @escaping (Error?) -> ()) {
         if NetworkManager.isNetworkAvailable {
-            NetworkManager.decodeJson(from: productUrl) { (product: Product?) in
-                guard let product = product else { return }
-                self.productDetail = product
-                self.coreDataManager.save(product)
-                completion()
+            NetworkManager.decodeJson(from: productUrl) { [weak self] (product: Product?, error)  in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                if let product = product {
+                    self?.productDetail = product
+                    self?.coreDataManager.save(product) { error in
+                        if let error = error {
+                            completion(error)
+                            return
+                        }
+                    }
+                    completion(nil)
+                }
             }
         } else {
-            guard let products = coreDataManager.getProducts() else { return }
-            
-            if let product = products.first(where: { $0.productId == product?.productId }) {
-                productDetail = product
-                completion()
+            coreDataManager.getProducts { [weak self] products, error in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                
+                if let product = products?.first(where: { $0.productId == self?.product?.productId }) {
+                    self?.productDetail = product
+                    completion(nil)
+                }
             }
         }
     }
